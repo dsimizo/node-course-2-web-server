@@ -2,6 +2,10 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+// Se digitar set no terminal do windows, vai aparecer um monte de variáveis
+//e esse PORT que estamos usando está lá e é a variável que o heroku
+//altera para usarmos para conectar ao servidor deles
+const port = process.env.PORT || 3000;  // Se não existir, fica com valor 3000
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -53,6 +57,6 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
